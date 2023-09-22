@@ -12,75 +12,64 @@
     <div class="container mt-4">
         <div class="row">
             <div class="col-md-6">
-                <h2> </h2>
-                <form action="/save" method="post">
-                    <div class="form-group">
-                        <label for="ProductName">Product Name:</label>
-                        <input type="hidden" name="id" value="<?= isset($pro['id']) ? $pro['id'] : '' ?>">
-                        <input type="text" class="form-control" name="ProductName" placeholder="Enter Product Name"
-                            value="<?= isset($pro['ProductName']) ? $pro['ProductName'] : '' ?>">
-                    </div>
-
-                    <div class="form-group">
-                    <label for="ProductDescription">Description:</label>
-                    <select class="form-control" name="ProductDescription">
-                        <option value="Male" <?= (isset($pro['ProductDescription']) && $pro['ProductDescription'] === 'Condiments') ? 'selected' : '' ?>>Condiments</option>
-                        <option value="Female" <?= (isset($pro['ProductDescription']) && $pro['ProductDescription'] === 'Drinks') ? 'selected' : '' ?>>Drinks</option>
-                        <option value="Other" <?= (isset($pro['ProductDescription']) && $pro['ProductDescription'] === 'Other') ? 'selected' : '' ?>>Other</option>
-                    </select>
-                    </div>
-
-
-                    <div class="form-group">
-                        <label for="ProductCategory">Category:</label>
-                        <input type="text" class="form-control" name="ProductCategory" placeholder="Enter Category"
-                            value="<?= isset($pro['ProductCategory']) ? $pro['ProductCategory'] : '' ?>">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="ProductQuantity">Quantity:</label>
-                        <input type="text" class="form-control" name="ProductQuantity" placeholder="Enter Quantity"
-                            value="<?= isset($pro['ProductQuantity']) ? $pro['ProductQuantity'] : '' ?>">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="ProductPrice">Price:</label>
-                        <input type="text" class="form-control" name="ProductPrice" placeholder="Enter Price"
-                            value="<?= isset($pro['ProductPrice']) ? $pro['ProductPrice'] : '' ?>">
-                    </div>
-
-                    <button type="submit" class="btn btn-primary">Save</button>
-                </form>
+                <h2>Product Management</h2>
+                <ul>
+                    <li>
+                        <form action="/save" method="post">
+                            <label for="ProductName">Product Name:</label>
+                            <input type="hidden" name="id" value="<?= isset($pro['id']) ? $pro['id'] : '' ?>">
+                            <input type="text" class="form-control" name="ProductName"
+                                placeholder="Enter Product Name"
+                                value="<?= isset($pro['ProductName']) ? $pro['ProductName'] : '' ?>">
+                            <label for="ProductDescription">Description:</label>
+                            <input type="text" class="form-control" name="ProductDescription"
+                                placeholder="Enter Description"
+                                value="<?= isset($pro['ProductDescription']) ? $pro['ProductDescription'] : '' ?>">
+                            <label for="ProductCategory">Category:</label>
+                            <select class="form-control" name="ProductCategory">
+                                <option value="Clothes"
+                                    <?= (isset($pro['ProductCategory']) && $pro['ProductCategory'] === 'Clothes') ? 'selected' : '' ?>>
+                                    Clothes</option>
+                                <option value="Food"
+                                    <?= (isset($pro['ProductCategory']) && $pro['ProductCategory'] === 'Food') ? 'selected' : '' ?>>
+                                    Food</option>
+                                <option value="Drink"
+                                    <?= (isset($pro['ProductCategory']) && $pro['ProductCategory'] === 'Drink') ? 'selected' : '' ?>>
+                                    Drink</option>
+                                <option value="Jewelry"
+                                    <?= (isset($pro['ProductCategory']) && $pro['ProductCategory'] === 'Jewelry') ? 'selected' : '' ?>>
+                                    Jewelry</option>
+                                <option value="Other"
+                                    <?= (isset($pro['ProductCategory']) && $pro['ProductCategory'] === 'Other') ? 'selected' : '' ?>>
+                                    Other</option>
+                            </select>
+                            <label for="ProductQuantity">Quantity:</label>
+                            <input type="text" class="form-control" name="ProductQuantity"
+                                placeholder="Enter Quantity"
+                                value="<?= isset($pro['ProductQuantity']) ? $pro['ProductQuantity'] : '' ?>">
+                            <label for="ProductPrice">Price:</label>
+                            <input type="text" class="form-control" name="ProductPrice" placeholder="Enter Price"
+                                value="<?= isset($pro['ProductPrice']) ? $pro['ProductPrice'] : '' ?>">
+                            <button type="submit" class="btn btn-primary">Save</button>
+                        </form>
+                    </li>
+                </ul>
             </div>
             <div class="col-md-6">
-                <h2> </h2>
-                <table class="table table-bordered">
-                    <thead class="thead-primary">
-                        <tr>
-                            <th>Product Name</th>
-                            <th>Product Description</th>
-                            <th>Product Category</th>
-                            <th>Product Quantity</th>
-                            <th>Product Price</th>
-                            <th>Delete/Update</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php foreach ($product as $pr): ?>
-                            <tr>
-                                <td><?= $pr['ProductName'] ?></td>
-                                <td><?= $pr['ProductDescription'] ?></td>
-                                <td><?= $pr['ProductCategory'] ?></td>
-                                <td><?= $pr['ProductQuantity'] ?></td>
-                                <td><?= $pr['ProductPrice'] ?></td>
-                                <td>
-                                    <a href="/delete/<?= $pr['id'] ?>" class="btn btn-danger btn-sm">Delete</a>
-                                    <a href="/edit/<?= $pr['id'] ?>" class="btn btn-primary btn-sm">Edit</a>
-                                </td>
-                            </tr>
-                        <?php endforeach ?>
-                    </tbody>
-                </table>
+                <h2>Product List</h2>
+                <ul>
+                    <?php foreach ($product as $pr): ?>
+                        <li>
+                            <strong>Product Name:</strong> <?= $pr['ProductName'] ?><br>
+                            <strong>Description:</strong> <?= $pr['ProductDescription'] ?><br>
+                            <strong>Category:</strong> <?= $pr['ProductCategory'] ?><br>
+                            <strong>Quantity:</strong> <?= $pr['ProductQuantity'] ?><br>
+                            <strong>Price:</strong> <?= $pr['ProductPrice'] ?><br>
+                            <a href="/delete/<?= $pr['id'] ?>" class="btn btn-danger btn-sm">Delete</a>
+                            <a href="/edit/<?= $pr['id'] ?>" class="btn btn-primary btn-sm">Edit</a>
+                        </li>
+                    <?php endforeach ?>
+                </ul>
             </div>
         </div>
     </div>
