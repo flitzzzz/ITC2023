@@ -43,7 +43,7 @@
                                     <?= (isset($pro['ProductCategory']) && $pro['ProductCategory'] === 'Other') ? 'selected' : '' ?>>
                                     Other</option>
                             </select>
-                            <label for="ProductQuantity">Quantity:</label>
+                            <label for="ProductQuantity">Enter Quantity:</label>
                             <input type="text" class="form-control" name="ProductQuantity"
                                 placeholder="Enter Quantity"
                                 value="<?= isset($pro['ProductQuantity']) ? $pro['ProductQuantity'] : '' ?>">
